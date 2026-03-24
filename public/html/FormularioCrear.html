@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario con validación</title>
+    <link rel="stylesheet" href="../css/stylesFormularioCrear.css" type="text/css" />
+
+</head>
+<body>
+    <h2>Registrar cuenta</h2>
+
+    <!--NOMBRE PARA REGISTRO-->
+    <form id="miFormulario"  action="" enctype="multipart/form-data" novalidate> 
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required> <!--opcional el requiered autofocus-->
+               <!-- pattern="[a-ZA-Z]{3,50}"title="Mensaje personal?" Expresion regular-->
+        <div class="mensaje" id="errorNombre"></div> <!--div: genera un contendedor generico--> <!--span: -->
+
+    <!--TELEFONO PARA REGISTRO-->
+        <label for="Telefono">Telefono:</label>
+        <input type="text" id="Telefono" name="Telefono" placeholder="(+52) Número celular" required>
+        <div class="mensaje" id="errorTelefono"></div>
+
+    <!--CORREO PARA REGISTRO-->
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+        <div class="mensaje" id="errorCorreo"></div>
+
+    <!--CONTRASEÑA PARA REGISTRO-->
+
+    <label for="contrasena">Contraseña:</label>
+        <input type="text" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+        <div class="mensaje" id="errorContrasena"></div>
+
+    <!--CONFIRMACIÓN CONTREÑA PARA REGISTRO-->
+
+    <label for="contrasenaConfirmacion">Confirmación de Contraseña:</label>
+        <input type="text" id="contrasenaConfirmacion" name="contrasenaConfirmacion" placeholder="Confirma contraseña" required>
+        <div class="mensaje" id="errorContrasenaConfirmacion"></div>
+
+    <!--PREGUNTA DE RECUPERACION-->
+    <label for="preguntaRecuperacion">Pregunta de recuperación:</label>
+        <input type="text" id="preguntaRecuperacion" name="preguntaRecuperacion" placeholder="Pregunta recuperación" required>
+        <div class="mensaje" id="errorPreguntaRecuperacion"></div>
+
+     <!--RESPUESTA DE RECUPERACION-->
+    <label for="respuestaRecuperacion">Respuesta de recuperación:</label>
+        <input type="text" id="respuestaRecuperacion" name="respuestaRecuperacion" placeholder="Respuesta recuperación" required>
+        <div class="mensaje" id="errorRespuestaRecuperacion"></div>
+
+    <!--BOTONES -->
+        
+        <div class="btnContainer">
+            <button class="registrar" type="submit">Registrar</button>  <!--El submit si no tiene ruta establecida entoces se lo manda a si mismo  -->
+            <button class="inicio" type="reset">Ya tengo cuenta</button>
+        </div>
+    </form>
+
+    <div id="resultado"></div>
+    <div class="success" id="mensajeExito"></div>
+
+ 
+    <script src="../js/validateFormB.js"></script>
+ 
+
+</body>
+</html>
