@@ -13,28 +13,38 @@
                 Responde a tu pregunta de seguridad para restablecer tu contraseña.
             </p>
 
-            <form id="formRecuperar" novalidate>
+            <form id="formRecuperar" method="POST" novalidate>
                 <label for="correo">Correo electrónico:</label>
                 <input type="email" id="correo" name="correo" placeholder="Tu correo registrado" required>
                 <span class="mensaje" id="error-correo"></span>
 
                 <label for="pregunta">Pregunta de seguridad:</label>
                 <select id="pregunta" name="pregunta" class="input-style">
-                    <option value="mascota">¿Nombre de tu primera mascota?</option>
+                    <option value="mascota">Nombre de tu mascota</option>
+                    <option value="color">¿Cual es tu color favorito?</option>
+                    <option value="actividad">¿Hobby favorito?</option>
                 </select>
 
                 <label for="respuesta">Palabra secreta (Respuesta):</label>
                 <input type="text" id="respuesta" name="respuesta" placeholder="Escribe tu palabra secreta" required>
                 <span class="mensaje" id="error-respuesta"></span>
 
+                <div class="campo">
+                <label>Nueva Contraseña:</label>
+                <input type="password" name="nuevaPassword" id="nuevaPassword" placeholder="Escribe tu nueva clave">
+                <span id="error-nuevaPassword" class="error"></span>
+                </div>
+
                 <div class="btnContainer">
                     <button class="submit" type="submit">Verificar Identidad</button>
-                    <a href="InForm.html" class="olvido">Regresar al inicio de sesión</a>
+                    <a href="/" class="olvido">Regresar al inicio de sesión</a>
                 </div>
+
+ 
             </form>
             <pre id="resultado"></pre>
         </div>
     </div>
-    <script src="../js/validateRecovery.js"></script>
+<script src="../js/validateRecovery.js"></script>
 </body>
 </html>

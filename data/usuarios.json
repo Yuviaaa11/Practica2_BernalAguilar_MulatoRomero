@@ -5,5 +5,14 @@
     "password": "$2a$12$KBPOAMw0P1Shoo3L/i.LIuZo9jQPGnXnqeTzC0UPoVC71kcn/umD.",
     "pregunta": "mascota",
     "respuestarc": "$2a$12$ztodbwTev4Rnko.P70tpE.Y6u7KxvjD4fVX8Xur4PWrHb47VHmysG"
+  },
+  {
+    "nombre": "Diego Elizalde",
+    "Telefono": "525513398787",
+    "correo": "diego@correo.com",
+    "password": "$2b$10$4DvwBGLRls/STvQz8MIjCuR3BobCWUBBvpMN2mEvW5xmv2Ae1SQd6",
+    "pregunta": "mascota",
+    "respuestarc": "$2b$10$oqfRjt5gb9mc5k0ZG8kt5uy0rhpxlnzUyITQS9rlPycoadqEEGoLq",
+    "fechaRegistro": "2026-03-30T19:32:20.344Z"
   }
 ]
