@@ -14,5 +14,32 @@
     "pregunta": "mascota",
     "respuestarc": "$2b$10$oqfRjt5gb9mc5k0ZG8kt5uy0rhpxlnzUyITQS9rlPycoadqEEGoLq",
     "fechaRegistro": "2026-03-30T19:32:20.344Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "yuviamixer.11.12.13@gmail.com",
+    "password": "$2b$10$Kqj6cNT1uA4RGCoHn.hrFejPryuvQAFXYnW8cQpRwM1nu1zNmY.FG",
+    "pregunta": "hola",
+    "respuestarc": "$2b$10$Kqj6cNT1uA4RGCoHn.hrFelbQa1IaY8ZIlVHRGqxkQLy7elRd15iO",
+    "fechaRegistro": "2026-03-31T04:36:13.089Z"
+  },
+  {
+    "nombre": "alexei mondragon",
+    "Telefono": "521234567890",
+    "correo": "alexei_mondragon@gmail.com",
+    "password": "$2b$10$2eZ4SQmBdTw6kZLmeThFIup5iIo5nDV/3GXVosRXi5IrrMvyyAvT2",
+    "pregunta": "color favorito",
+    "respuestarc": "$2b$10$2eZ4SQmBdTw6kZLmeThFIu6IM3L4ZNuPB/e/UcLKk5vKzVhd/pe2y",
+    "fechaRegistro": "2026-03-31T04:41:08.163Z"
+  },
+  {
+    "nombre": "ximena bernal",
+    "Telefono": "525509876543",
+    "correo": "scarlett@gmail.com",
+    "password": "$2b$10$sHUQ74NZYf9gXelM.ZFN4epoc4VvLgMm/xQ/GLHrG7BvrsrYBoKcW",
+    "pregunta": "nombre de mascota",
+    "respuestarc": "$2b$10$sHUQ74NZYf9gXelM.ZFN4ezAVOiZ7KXFwbq3YEUDMst9gGET6Bvq.",
+    "fechaRegistro": "2026-03-31T04:50:55.392Z"
   }
 ]

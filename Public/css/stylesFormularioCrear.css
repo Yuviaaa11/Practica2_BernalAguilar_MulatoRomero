@@ -110,13 +110,167 @@ button{
 }
  
  
-.inicio{
+.olvido{
     background:#97AE0A;
     color:white;
 }
 
-.inicio:hover{
+.olvido:hover{
     background:#B2CD0D;
 
 }
+
+#tarjetaExito {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 90%;
+}
+
+.tarjeta .icono {
+    font-size: 3rem;
+    color: #6abf4b;
+    margin-bottom: 16px;
+}
+
+.tarjeta h2 {
+    color: #3a7d1e;
+    margin-bottom: 10px;
+}
+
+.tarjeta p {
+    color: #555;
+    margin-bottom: 24px;
+}
+
+#tarjetaError {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 90%;
+}
+
+.tarjeta .icono.error {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 16px;
+}
+.contenedorModo {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    
+}
+
+/* MODO OSCURO */
+
+.btnModoOscuro {
+    flex: none;
+    padding: 8px 16px;
+    background: #B2CD0D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+body.oscuro {
+    background: #1a1a2e !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro form {
+    background: #16213e !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+}
+
+body.oscuro input {
+    background: #0f3460 !important;
+    border-color: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro input::placeholder {
+    color: #aaa !important;
+}
+
+body.oscuro label {
+    color: #ccc !important;
+}
+
+body.oscuro h2 {
+    color: #e0e0e0 !important;
+}
+
+body.oscuro .tarjeta {
+    background: #16213e !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro .tarjeta p {
+    color: #ccc !important;
+}
+
+body.oscuro .tarjeta h2 {
+    color: #a8d5a2 !important;
+}
+
+body.oscuro .btnModoOscuro {
+    background: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro .registrar {
+    background: #4a90e2 !important; 
+    color: white !important;
+}
+
+body.oscuro .registrar:hover {
+    background: #357abd !important;
+}
+
+body.oscuro .olvido {
+    background: #357abd !important; 
+    color: white !important;
+}
+
+body.oscuro .olvido:hover {
+    background: #4a90e2 !important;
+}
+
+
 

@@ -2,8 +2,7 @@ const form = document.getElementById("miFormulario");
 const resultado = document.getElementById("resultado");
 const mensajeExito = document.getElementById("mensajeExito");
 
-const campos = ["nombre","Telefono","correo","contrasena","contrasenaConfirmacion","preguntaRecuperacion","respuestaRecuperacion"
-];
+const campos = ["nombre","Telefono","correo","contrasena","contrasenaConfirmacion","preguntaRecuperacion","respuestaRecuperacion"];
 
 const errores = {
   nombre: "errorNombre",
@@ -26,14 +25,12 @@ function validarCampo(id) {
 
   const valor = input.value.trim();
 
-  /* campo obligatorio */
   if (input.required && valor === "") {
     error.textContent = "Este campo es obligatorio";
     input.classList.add("invalido");
     return false;
   }
 
-  /* validación especial: nombre */
   if (id === "nombre") {
     if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$/.test(valor)) {
       error.textContent = "El nombre solo debe contener letras y mínimo 3 caracteres";
@@ -42,7 +39,6 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: teléfono */
   if (id === "Telefono") {
     if (!/^52\d{10}$/.test(valor)) {
       error.textContent = "Debe iniciar con 52 y tener 10 dígitos";
@@ -51,7 +47,6 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: correo */
   if (id === "correo") {
     if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(valor)) {
       error.textContent = "Correo electrónico inválido";
@@ -60,7 +55,6 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: contraseña */
   if (id === "contrasena") {
     if (valor.length < 8) {
       error.textContent = "La contraseña debe tener al menos 8 caracteres";
@@ -69,10 +63,8 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: confirmar contraseña */
   if (id === "contrasenaConfirmacion") {
     const contrasena = document.getElementById("contrasena");
-
     if (valor !== contrasena.value.trim()) {
       error.textContent = "Las contraseñas no coinciden";
       input.classList.add("invalido");
@@ -80,7 +72,6 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: pregunta */
   if (id === "preguntaRecuperacion") {
     if (valor.length < 3) {
       error.textContent = "La pregunta debe tener al menos 3 caracteres";
@@ -89,7 +80,6 @@ function validarCampo(id) {
     }
   }
 
-  /* validación especial: respuesta */
   if (id === "respuestaRecuperacion") {
     if (valor.length < 3) {
       error.textContent = "La respuesta debe tener al menos 3 caracteres";
@@ -102,34 +92,38 @@ function validarCampo(id) {
   return true;
 }
 
-/* eventos en inputs */
 campos.forEach((id) => {
   const input = document.getElementById(id);
-
   if (!input) return;
-
   input.addEventListener("blur", () => validarCampo(id));
   input.addEventListener("input", () => validarCampo(id));
 });
 
-/* submit */
+function mostrarTarjetaExito() {
+  document.getElementById("miFormulario").style.display = "none";
+  document.getElementById("tarjetaExito").style.display = "flex";
+}
+
+function mostrarTarjetaError() {
+  document.getElementById("tarjetaError").style.display = "flex";
+}
+
+function cerrarTarjetaError() {
+  document.getElementById("tarjetaError").style.display = "none";
+  document.getElementById("correo").value = "";
+  document.getElementById("correo").classList.remove("valido");
+}
+
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   let valido = true;
 
-  if (mensajeExito) {
-    mensajeExito.textContent = "";
-  }
-
-  if (resultado) {
-    resultado.textContent = "";
-  }
+  if (mensajeExito) mensajeExito.textContent = "";
+  if (resultado) resultado.textContent = "";
 
   campos.forEach((id) => {
-    if (!validarCampo(id)) {
-      valido = false;
-    }
+    if (!validarCampo(id)) valido = false;
   });
 
   if (!valido) return;
@@ -137,31 +131,29 @@ form.addEventListener("submit", async function (e) {
   const datos = Object.fromEntries(new FormData(form));
 
   try {
-    const response = await fetch("/registro", { //solicitamos la intervension del servidor para devolver datos, puede ser una pagina o un arhcivo json. 
+    const response = await fetch("/registro", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(datos) //convertimos en cadena json
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos)
     });
 
     const resultadoServidor = await response.json();
-    /*const nombre=
-    const url
-    console.*/
 
-    if (resultado) {
-      resultado.textContent = JSON.stringify(resultadoServidor, null, 2);
+    if (response.ok) {
+      mostrarTarjetaExito();
+    } else {
+      try {
+        const erroresServidor = JSON.parse(resultadoServidor.mensaje);
+        if (erroresServidor.correo === "El correo ya está registrado") { 
+          mostrarTarjetaError();
+        }
+      } catch (e) {
+        if (resultado) resultado.textContent = resultadoServidor.mensaje;
+      }
     }
 
-    if (mensajeExito) {
-      mensajeExito.textContent = "¡Formulario enviado correctamente!";
-    }
   } catch (error) {
-    console.error(error);
-
-    if (resultado) {
-      resultado.textContent = "Error al enviar el formulario";
-    }
+    console.error("Error en fetch:", error);
+    if (resultado) resultado.textContent = "Error al enviar el formulario";
   }
 });
