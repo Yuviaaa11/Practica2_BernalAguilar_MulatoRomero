@@ -8,6 +8,27 @@
  *  3. Modificar contraseña
  */
 
+/**
+ * Aquí se define la estructura de los datos,
+ * en su caso mapeo de datos a una base de datos.
+ * 
+ * Para el caso del formulario.
+ *  1. Registrar usuario
+ *  2. Recuperar usuario
+ *  3. Modificar contraseña
+ */
+
+
+/**
+ * Aquí se define la estructura de los datos,
+ * en su caso mapeo de datos a una base de datos.
+ * 
+ * Para el caso del formulario.
+ *  1. Registrar usuario
+ *  2. Recuperar usuario
+ *  3. Modificar contraseña
+ */
+
 import { readFile, writeFile } from 'fs/promises';
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,7 +36,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
  
-const FILE_PATH = path.join(__dirname, "../data/", "users.json")
+const FILE_PATH = path.join(__dirname, "../data/", "usuarios.json")
  
 export const readUsers = async () => {
   try {

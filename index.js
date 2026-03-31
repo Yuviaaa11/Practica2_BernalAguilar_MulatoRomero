@@ -31,7 +31,7 @@ import { fileURLToPath } from "url";
 /*import dotenv from "dotenv"; // npm install dotenv*/
 
 import formRoutes from "./routes/formRoutes.js";
-
+//ntsat -reecupra los puertos
 // asigna puerto para atender peticiones
 /**
  * | Rango       | Tipo        | Uso recomendado                                 |
@@ -49,7 +49,7 @@ const app = express();
 // habilita la conversión de objetos JSON a objetos JS.
 app.use(express.json());
 // habilita el procesamiento de solicitudes POST/PUT
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); //revisar
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
