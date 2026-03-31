@@ -107,6 +107,7 @@ button{
  
 .registrar:hover{
     background:#97AE0A;
+    transform: translateY(-2px);
 }
  
  
@@ -117,7 +118,7 @@ button{
 
 .olvido:hover{
     background:#B2CD0D;
-
+    transform: translateY(-2px);
 }
 
 #tarjetaExito {
@@ -187,6 +188,22 @@ button{
     color: #e74c3c;
     margin-bottom: 16px;
 }
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; 
+        max-width: 450px;
+    }
+    
+    .image-section {
+        height: 200px; /* Limitamos la altura de la imagen en móvil */
+    }
+
+    .form-section {
+        padding: 25px;
+    }
+}
+
 .contenedorModo {
     position: fixed;
     top: 15px;
@@ -198,7 +215,7 @@ button{
 
 .btnModoOscuro {
     flex: none;
-    padding: 8px 16px;
+    padding: 3px 16px;
     background: #B2CD0D;
     color: white;
     border: none;
@@ -206,6 +223,11 @@ button{
     cursor: pointer;
     font-size: 14px;
     transition: 0.3s;
+}
+
+.btnModoOscuro:hover{
+     background: #97AE0A !important;
+     transform: translateY(-2px);
 }
 
 body.oscuro {
@@ -229,7 +251,7 @@ body.oscuro input::placeholder {
 }
 
 body.oscuro label {
-    color: #ccc !important;
+    color: #ffffff !important;
 }
 
 body.oscuro h2 {
@@ -252,24 +274,34 @@ body.oscuro .tarjeta h2 {
 body.oscuro .btnModoOscuro {
     background: #444 !important;
     color: #e0e0e0 !important;
+    
+}
+
+body.oscuro .btnModoOscuro:hover{
+     background: #4a90e2 !important;
+    transform: translateY(-2px);
 }
 
 body.oscuro .registrar {
-    background: #4a90e2 !important; 
+    background: #265889 !important; 
     color: white !important;
+    
 }
 
 body.oscuro .registrar:hover {
     background: #357abd !important;
+    transform: translateY(-2px);
 }
 
 body.oscuro .olvido {
     background: #357abd !important; 
     color: white !important;
+    
 }
 
 body.oscuro .olvido:hover {
     background: #4a90e2 !important;
+    transform: translateY(-2px);
 }
 
 

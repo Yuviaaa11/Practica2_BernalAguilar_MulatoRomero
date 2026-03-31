@@ -107,8 +107,13 @@ export const recuperarPassword = async (req, res) => {
             ok: true, 
             mensaje: "¡Contraseña actualizada con éxito! Ya puedes iniciar sesión." 
         });
-
+ 
     } catch (error) {
         res.status(400).json({ ok: false, mensaje: error.message });
     }
 };
+
+  //4. Inicio Sesion
+    export const mostrarInicio = async (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/html/InicioSesion.html"));
+    };    

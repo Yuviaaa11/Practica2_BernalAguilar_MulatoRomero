@@ -7,6 +7,9 @@
     
 
 </head>
+<div class="contenedorModo">
+        <button class="btnModoOscuro" id="btnModoOscuro" onclick="toggleModoOscuro()">Modo oscuro</button>
+    </div>
 <body>
 
     <div class="login-container">
@@ -29,8 +32,8 @@
         <span class="mensaje" id="error-password"></span>
 
         <div class="btnContainer">            
-            <button class="submit" type="submit">Ingresar</button>
-<button type="button" class="tu-clase-de-boton" onclick="location.href='/registro'">
+            <button class="submit" type="submit" onclick="location.href='/inicio'">Ingresar</button>
+<button type="button" class="CrearCuenta" onclick="location.href='/registro'">
     Crear Cuenta</button>
             <a href="/recuperar" class="olvido">¿Olvidaste tu contraseña?</a>
             
@@ -40,6 +43,7 @@
 
     <pre id="resultado"></pre>
 
+    <script src="../js/modoOscuro.js"></script>
     <script src="../js/validateFormB.js"></script>
 
 

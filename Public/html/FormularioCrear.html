@@ -31,10 +31,13 @@
         <input type="text" id="contrasenaConfirmacion" name="contrasenaConfirmacion" placeholder="Confirma contraseña" required>
         <div class="mensaje" id="errorContrasenaConfirmacion"></div>
 
-        <label for="preguntaRecuperacion">Pregunta de recuperación:</label>
-        <input type="text" id="preguntaRecuperacion" name="preguntaRecuperacion" placeholder="Pregunta recuperación" required>
-        <div class="mensaje" id="errorPreguntaRecuperacion"></div>
-
+        <label for="pregunta">Pregunta de seguridad:</label>
+                <select id="pregunta" name="pregunta" class="input-style">
+                    <option value="mascota">Nombre de tu mascota</option>
+                    <option value="color">¿Cual es tu color favorito?</option>
+                    <option value="actividad">¿Hobby favorito?</option>
+                </select>
+                
         <label for="respuestaRecuperacion">Respuesta de recuperación:</label>
         <input type="text" id="respuestaRecuperacion" name="respuestaRecuperacion" placeholder="Respuesta recuperación" required>
         <div class="mensaje" id="errorRespuestaRecuperacion"></div>

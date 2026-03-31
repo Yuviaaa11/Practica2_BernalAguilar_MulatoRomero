@@ -41,5 +41,29 @@
     "pregunta": "nombre de mascota",
     "respuestarc": "$2b$10$sHUQ74NZYf9gXelM.ZFN4ezAVOiZ7KXFwbq3YEUDMst9gGET6Bvq.",
     "fechaRegistro": "2026-03-31T04:50:55.392Z"
+  },
+  {
+    "nombre": "abigail",
+    "Telefono": "521234567890",
+    "correo": "abigail_yuvia@gmail.com",
+    "password": "$2b$10$77vpi1XvxQUfzmT.Mjv4EOhtiHgvE1D9C9gamhs9fiR3pgipMpVEe",
+    "respuestarc": "$2b$10$szyzRQDvSQZhUWuq7w/yE.K6GIXu1Xb18eL8TOWHl907yycGGsUxe",
+    "fechaRegistro": "2026-03-31T18:36:00.726Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "haoaoak@gmail.com",
+    "password": "$2b$10$vhfL52mCvyj651einnFcl.tmqTNXecCl.t6vT8r6/YkHeexqMrwHq",
+    "respuestarc": "$2b$10$vhfL52mCvyj651einnFcl.8evSKiBG5ovg26IVsSL77Pa1YifyA/i",
+    "fechaRegistro": "2026-03-31T20:09:17.378Z"
+  },
+  {
+    "nombre": "anita ",
+    "Telefono": "521234567890",
+    "correo": "anita@gmail.com",
+    "password": "$2b$10$Y1nokxlpdczNhMLWIT0Hw.TOMUStQl8R08rbEqli1RmqmEj60WcVG",
+    "respuestarc": "$2b$10$MzbgFXjw03ZUVJ5Rk3wZDuftMqiFFURFpt7gYrFPL8rKKgd8Jtade",
+    "fechaRegistro": "2026-03-31T22:05:45.556Z"
   }
 ]

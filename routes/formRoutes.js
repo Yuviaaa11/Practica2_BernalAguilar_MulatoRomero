@@ -11,10 +11,10 @@ import {
     mostrarFormularioRegistro, 
     registrarUsuario, 
     loginUsuario,
-    recuperarPassword 
+    recuperarPassword, mostrarInicio 
 } from "../controllers/formControllers.js";
 
-// Configuración necesaria para manejar rutas de archivos con ES Modules
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -30,9 +30,12 @@ router.get("/registro", mostrarFormularioRegistro);
 
 // Ruta para ver el formulario de recuperación
 router.get("/recuperar", (req, res) => {
-    // Nota: Asegúrate de que la carpeta se llame "public" o "Public" según tu proyecto
     res.sendFile(path.join(__dirname, "../public/html/Conform.html"));
 });
+
+//Ruta para ver Inicio
+router.get("/inicio", mostrarInicio);
+
 
 
 // --- RUTAS PARA PROCESAR DATOS (POST) ---

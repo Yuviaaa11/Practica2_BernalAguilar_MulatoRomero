@@ -1,3 +1,7 @@
+//logica de negocios
+//guardar informacion
+//aplicar reglas de negocio
+//transformar datos
 export const procesarFormulario = async (datos) => {
     const { nombre, Telefono, correo, contrasena, contrasenaConfirmacion, preguntaRecuperacion, respuestaRecuperacion } = datos;
     const errores = {};
