@@ -137,15 +137,18 @@ form.addEventListener("submit", async function (e) {
   const datos = Object.fromEntries(new FormData(form));
 
   try {
-    const response = await fetch("/registro", {
+    const response = await fetch("/registro", { //solicitamos la intervension del servidor para devolver datos, puede ser una pagina o un arhcivo json. 
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(datos)
+      body: JSON.stringify(datos) //convertimos en cadena json
     });
 
     const resultadoServidor = await response.json();
+    /*const nombre=
+    const url
+    console.*/
 
     if (resultado) {
       resultado.textContent = JSON.stringify(resultadoServidor, null, 2);
