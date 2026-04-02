@@ -1,49 +1,24 @@
-/*
-   Rutas unificadas para el manejo de formularios.
-   Maneja: Vista principal, Registro de usuario y Recuperación de contraseña.
-*/
-
 import express from "express";
-import path from "path"; 
+import path from "path";
 import { fileURLToPath } from "url";
 import { 
-    mostrarFormulario, 
-    mostrarFormularioRegistro, 
-    registrarUsuario, 
-    loginUsuario,
-    recuperarPassword, mostrarInicio 
+    mostrarFormulario, mostrarFormularioRegistro, mostrarInicio,
+    registrarUsuario, loginUsuario, recuperarPassword 
 } from "../controllers/formControllers.js";
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const router = express.Router();
 
-// --- RUTAS PARA VISTAS (GET) ---
-
-// Ruta raíz: Muestra el formulario principal (Login / InForm.html)
+// GET
 router.get("/", mostrarFormulario);
-
-// Ruta para ver el formulario de registro (FormularioCrear.html)
 router.get("/registro", mostrarFormularioRegistro);
-
-// Ruta para ver el formulario de recuperación
-router.get("/recuperar", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/html/Conform.html"));
-});
-
-//Ruta para ver Inicio
 router.get("/inicio", mostrarInicio);
+router.get("/recuperar", (req, res) => res.sendFile(path.join(__dirname, "../public/html/Conform.html")));
 
-
-
-// --- RUTAS PARA PROCESAR DATOS (POST) ---
-
-// Procesa el registro de un nuevo usuario
-router.post("/", loginUsuario);
+// POST (Aquí está la magia)
+router.post("/login", loginUsuario); // Cambiamos la ruta a /login para que no choque
 router.post("/registro", registrarUsuario);
-// Procesa la solicitud de recuperación de contraseña
 router.post("/recuperar", recuperarPassword);
 
 export default router;
