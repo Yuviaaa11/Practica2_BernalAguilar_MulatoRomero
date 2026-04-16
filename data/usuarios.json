@@ -65,5 +65,13 @@
     "password": "$2b$10$Y1nokxlpdczNhMLWIT0Hw.TOMUStQl8R08rbEqli1RmqmEj60WcVG",
     "respuestarc": "$2b$10$MzbgFXjw03ZUVJ5Rk3wZDuftMqiFFURFpt7gYrFPL8rKKgd8Jtade",
     "fechaRegistro": "2026-03-31T22:05:45.556Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "yuviaaaaa@gmail.com",
+    "password": "$2b$10$0f4DLkn3do1Rl2fmxA4gwe1KwGKIiMqKjy.l5.hHLfQ/vM251YHNa",
+    "respuestarc": "$2b$10$0f4DLkn3do1Rl2fmxA4gweB7ix2zjMw8aK9FoNiXOP1o/0D/NrHHS",
+    "fechaRegistro": "2026-03-31T23:32:06.160Z"
   }
 ]

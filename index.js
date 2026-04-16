@@ -54,6 +54,12 @@ app.use(express.urlencoded({ extended: true })); //revisar
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//Define el motor de plantillas
+app.set('view engine', 'ejs');
+
+//asocia carpeta views para las vistas EJS
+app.set('views', path.join(__dirname, 'views'));
+
 // asocia contenido estático HTML, CSS
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -64,3 +70,4 @@ app.use("/", formRoutes);
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
+
