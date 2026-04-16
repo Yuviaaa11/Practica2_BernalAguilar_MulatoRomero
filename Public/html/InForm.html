@@ -21,18 +21,14 @@
     <h2>Inicio de sesion</h2>
     <form id="miFormulario" action="" enctype="application/x-www-form-urlencoded" novalidate>
         
-        <label for="correo">Correo electrónico:</label>
-        <input type="email" id="correo" name="correo"
-               placeholder="Correo electrónico" required>
-        <span class="mensaje" id="error-correo"></span>
-        
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" 
-                placeholder="Ingresa tu contraseña" required>
-        <span class="mensaje" id="error-password"></span>
+<label for="correo">Correo electrónico:</label>
+<input type="email" id="correo" name="correo" placeholder="Correo electrónico">
+<span id="errorCorreo" class="mensaje"></span> <label for="password">Contraseña:</label>
+<input type="password" id="password" name="password" placeholder="Ingresa tu contraseña">
+<span id="errorPassword" class="mensaje"></span>
 
         <div class="btnContainer">            
-            <button class="submit" type="submit" onclick="location.href='/inicio'">Ingresar</button>
+            <button class="submit" type="submit">Ingresar</button>
 <button type="button" class="CrearCuenta" onclick="location.href='/registro'">
     Crear Cuenta</button>
             <a href="/recuperar" class="olvido">¿Olvidaste tu contraseña?</a>
