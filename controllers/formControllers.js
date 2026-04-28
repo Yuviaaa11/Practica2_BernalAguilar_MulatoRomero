@@ -57,6 +57,7 @@ export const loginUsuario = async (req, res) => {
                 mensaje: "El correo y la contraseña son obligatorios." 
             });
         }
+//agregamos res.render('pages/bienvenida', {nombre:'Juan'})
         
         const resultado = await procesarLogin(req.body);
         
@@ -90,3 +91,4 @@ export const recuperarPassword = async (req, res) => {
         });
     }
 };
+
