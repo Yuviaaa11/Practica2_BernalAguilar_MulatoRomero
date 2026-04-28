@@ -8,7 +8,7 @@ import {
 
 // --- REGISTRO ---
 export const registrarUsuarioService = async (datos) => {
-    const { nombre, Telefono, correo, contrasena, respuestaRecuperacion, preguntaId } = datos;
+    const { nombre, Telefono, correo, contrasena, respuestarc, preguntarc } = datos;
 
     if (await existsUser(correo)) {
         throw new Error(JSON.stringify({ correo: "El correo ya está registrado" }));
@@ -16,7 +16,7 @@ export const registrarUsuarioService = async (datos) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(contrasena, salt);
-    const hashedRespuesta = await bcrypt.hash(respuestaRecuperacion, salt);
+    const hashedRespuesta = await bcrypt.hash(respuestarc, salt);
 
     await writeUser({
         nombre,
