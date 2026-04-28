@@ -10,7 +10,7 @@
  */
 
 import sql from 'mssql';
-import { getConnection } from '../../APIREST/src/config/sqlserver.js';
+import { poolPromise } from '../../APIREST/src/config/sqlserver.js';
 
 export const readUsers = async () => {
     const pool = await getConnection();

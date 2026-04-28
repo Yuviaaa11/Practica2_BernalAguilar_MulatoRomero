@@ -1,126 +1,55 @@
-/* 
-   Archivo principal que inicia el servidor.
-   Responsabilidades:
-     1. Configurar Express
-     2. Leer variables de entorno
-     3. Registrar middlewares
-     4. Registrar rutas
-     5. Servir archivos estáticos (assets)
-
-
-  Se requiere configurar el proyecto nodeJS
-  
-  1. Iniciarlizar proyecto
-     npm init -y ------ asigna valores por defecto en 
-                 ------ la configuración de package.json
-
-   2. Instalar dependencias para el proyecto: en este caso
-      Express para el servidor HTTP para procesar peticiones
-      a través de envíos POST y GET.
-
-      npm install express
-
-      npm install --save-dev nodemon
-
-*/
-
-//import express from "express";
-//import path from "path";
-//import { fileURLToPath } from "url";
-
-/*import dotenv from "dotenv"; // npm install dotenv*/
-
-//--------------ACTUALIZACION ----------------
 import express from 'express';
 import https from 'https';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import session from 'express-session';
-
-const app = express();
-
-// 1. Cargar los certificados
-
-// Nota: En producción, usa variables de entorno para las rutas
-
-const options = {
-
-  key: fs.readFileSync('./localhost-key.pem'),
-
-  cert: fs.readFileSync('./localhost.pem'),
-
-};
-
- 
-
-app.get('/', (req, res) => {
-
-  res.send('¡Conexión segura establecida!');
-
-});
-
- 
-
-// 2. Crear el servidor HTTPS pasando la app de Express
-
-const PORT = 443; // Puerto estándar para HTTPS
-
-https.createServer(options, app).listen(PORT, () => {
-
-  console.log(`Servidor HTTPS corriendo en https://localhost:${PORT}`);
-
-});
-
-//----------- ACTUALIZACION ------------------
-
 import formRoutes from "./routes/formRoutes.js";
-//ntsat -reecupra los puertos
-// asigna puerto para atender peticiones
-/**
- * | Rango       | Tipo        | Uso recomendado                                 |
-| ----------- | ----------- | ----------------------------------------------- |
-| 0-1023      | Well-known  | ❌ Reservados (HTTP=80, HTTPS=443, FTP=21, etc.) |
-| 1024-49151  | Registrados | ✅ Desarrollo (3000, 4000, 5000, 8080)           |
-| 49152-65535 | Dinámicos   | ✅ Temporales                                    |
- */
-const PORT = 3000;
 
-// instancia el modulo de express para configurar el servidor
 const app = express();
+const PORT = 3000; // Solo una vez declaramos el puerto
 
-
-// habilita la conversión de objetos JSON a objetos JS.
-app.use(express.json());
-// habilita el procesamiento de solicitudes POST/PUT
-app.use(express.urlencoded({ extended: true })); //revisar
-
+// Configuración de rutas para __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-//Define el motor de plantillas
-app.set('view engine', 'ejs');
+// 1. Cargar los certificados (Si no los tienes físicamente, comenta estas líneas)
+const options = {
+  key: fs.readFileSync('./localhost-key.pem'),
+  cert: fs.readFileSync('./localhost.pem'),
+};
 
-//asocia carpeta views para las vistas EJS --aqui ponemos la direcciond de la carpeta
+// 2. Configuración del motor de plantillas
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// 3. Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'awademolepasilloamarillo', 
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Poner en true solo si se usa HTTPS (SSL)
+    cookie: { secure: false } 
 }));
 
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Archivos estáticos
+// 4. Archivos estáticos
 app.use("/", express.static(path.join(__dirname, "public")));
 
-// Rutas
+// 5. Rutas
+app.get('/test-secure', (req, res) => {
+  res.send('¡Conexión segura establecida!');
+});
+
 app.use("/", formRoutes);
 
+// 6. Iniciar Servidores
+// Servidor HTTP normal
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
 
+// Servidor HTTPS (Opcional, compartiendo el mismo puerto o usando 443)
+https.createServer(options, app).listen(443, () => {
+  console.log(`Servidor HTTPS corriendo en https://localhost:443`);
+});
