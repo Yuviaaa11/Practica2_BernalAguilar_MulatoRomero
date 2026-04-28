@@ -14,10 +14,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 1. Cargar los certificados (Si no los tienes físicamente, comenta estas líneas)
-const options = {
-  key: fs.readFileSync('./localhost-key.pem'),
-  cert: fs.readFileSync('./localhost.pem'),
-};
+//const options = {
+  //key: fs.readFileSync('./localhost-key.pem'),
+  //cert: fs.readFileSync('./localhost.pem'),
+//};
 
 // 2. Configuración del motor de plantillas
 app.set('view engine', 'ejs');
@@ -50,6 +50,6 @@ app.listen(PORT, () => {
 });
 
 // Servidor HTTPS (Opcional, compartiendo el mismo puerto o usando 443)
-https.createServer(options, app).listen(443, () => {
+/*https.createServer(options, app).listen(443, () => {
   console.log(`Servidor HTTPS corriendo en https://localhost:443`);
-});
+});*/

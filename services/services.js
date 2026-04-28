@@ -7,7 +7,7 @@ import {
 } from '../models/models.js';
 
 // --- REGISTRO ---
-export const registrarUsuariioService = async (datos) => {
+export const registrarUsuarioService = async (datos) => {
     const { nombre, Telefono, correo, contrasena, respuestaRecuperacion, preguntaId } = datos;
 
     if (await existsUser(correo)) {
