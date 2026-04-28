@@ -26,10 +26,10 @@ export const writeUser = async (newUser) => {
         .input('Telefono',    sql.NVarChar, Telefono)
         .input('correo',      sql.NVarChar, correo)
         .input('password',    sql.NVarChar, password)
-        .input('preguntaId',  sql.Int,      preguntaId)
+        .input('preguntarc',  sql.Int,      preguntarc)
         .input('respuestarc', sql.NVarChar, respuestarc)
-        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntaId, respuestarc)
-                VALUES (@nombre, @Telefono, @correo, @password, @preguntaId, @respuestarc)`);
+        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntarc, respuestarc)
+                VALUES (@nombre, @Telefono, @correo, @password, @preguntarc, @respuestarc)`);
 };
 
 export const findUserByEmail = async (correo) => {
