@@ -47,13 +47,14 @@ h2{
     text-align:center;
 }
 
+
 /* FORMULARIO */
 form{
     background:white;
     padding:25px 30px;
     border-radius:10px;
     width:100%;
-    max-width:400px;
+    max-width:600px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
     display:flex;
     flex-direction:column;
@@ -122,26 +123,26 @@ button{
     transition:0.3s;
 }
 
-/* BOTON ENVIAR */
 .submit{
     background:#B2CD0D;
     color:white;
 }
-
+ 
 .submit:hover{
     background:#97AE0A;
-    transform: translateY(-2px); /* Pequeño efecto de elevación */
+    transform: translateY(-2px);
 }
 
 .olvido {
     color: #0866ff;
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 18px;
     align-self: center;
 }
 
 .olvido:hover {
     text-decoration: underline;
+    transform: translateY(-2px);
 }
 
 
@@ -182,4 +183,116 @@ button{
     .form-section {
         padding: 25px;
     }
+}
+
+.contenedorModo {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    
+}
+
+/* MODO OSCURO */
+
+.btnModoOscuro {
+    flex: none;
+    padding: 3px 16px;
+    background: #B2CD0D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+body.oscuro {
+    background: #1a1a2e !important;
+    color: #ffffff !important;
+}
+
+body.oscuro form {
+    background: #16213e !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+}
+
+body.oscuro input {
+    background: #0f3460 !important;
+    border-color: #444 !important;
+    color: #ffffff !important;
+}
+
+body.oscuro input::placeholder {
+    color: #aaa !important;
+}
+
+body.oscuro label {
+    color: #ffffff !important;
+}
+
+body.oscuro h2 {
+    color: #ffffff !important;
+}
+
+body.oscuro p{
+    color: #ffffff !important
+}
+
+body.oscuro .tarjeta {
+    background: #16213e !important;
+    color: #ffffff !important;
+}
+
+body.oscuro .tarjeta p {
+    color: #ffffff !important;
+}
+
+body.oscuro #resultado {
+    margin-top: 20px;
+    font-size: 12px;
+    background: #16213e;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+body.oscuro .btnModoOscuro {
+    background: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro .btnModoOscuro:hover{
+     background: #4a90e2 !important;
+    transform: translateY(-2px);
+}
+
+body.oscuro .registrar {
+    background: #265889 !important; 
+    color: white !important;
+}
+
+body.oscuro .registrar:hover {
+    background: #357abd !important;
+}
+
+body.oscuro .olvido {
+    text-decoration: underline; 
+    color: white !important;
+}
+
+body.oscuro .olvido:hover {
+    background: #357abd !important;
+    transform: translateY(-2px);
+}
+
+/* BOTON ENVIAR */
+body.oscuro .submit{
+    background: #4a90e2 ;
+    color:white;
+}
+
+body.oscuro .submit:hover{
+    background: #357abd;
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
 }

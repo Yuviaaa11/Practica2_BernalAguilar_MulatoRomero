@@ -10,9 +10,68 @@
     "nombre": "Diego Elizalde",
     "Telefono": "525513398787",
     "correo": "diego@correo.com",
-    "password": "$2b$10$4DvwBGLRls/STvQz8MIjCuR3BobCWUBBvpMN2mEvW5xmv2Ae1SQd6",
+    "password": "$2b$10$nic6ydj8DTifbPvbwo2CH.zyUXqPJjlrJtekyyh7cctcGfjO5Jbqq",
     "pregunta": "mascota",
     "respuestarc": "$2b$10$oqfRjt5gb9mc5k0ZG8kt5uy0rhpxlnzUyITQS9rlPycoadqEEGoLq",
     "fechaRegistro": "2026-03-30T19:32:20.344Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "yuviamixer.11.12.13@gmail.com",
+    "password": "$2b$10$Kqj6cNT1uA4RGCoHn.hrFejPryuvQAFXYnW8cQpRwM1nu1zNmY.FG",
+    "pregunta": "hola",
+    "respuestarc": "$2b$10$Kqj6cNT1uA4RGCoHn.hrFelbQa1IaY8ZIlVHRGqxkQLy7elRd15iO",
+    "fechaRegistro": "2026-03-31T04:36:13.089Z"
+  },
+  {
+    "nombre": "alexei mondragon",
+    "Telefono": "521234567890",
+    "correo": "alexei_mondragon@gmail.com",
+    "password": "$2b$10$2eZ4SQmBdTw6kZLmeThFIup5iIo5nDV/3GXVosRXi5IrrMvyyAvT2",
+    "pregunta": "color favorito",
+    "respuestarc": "$2b$10$2eZ4SQmBdTw6kZLmeThFIu6IM3L4ZNuPB/e/UcLKk5vKzVhd/pe2y",
+    "fechaRegistro": "2026-03-31T04:41:08.163Z"
+  },
+  {
+    "nombre": "ximena bernal",
+    "Telefono": "525509876543",
+    "correo": "scarlett@gmail.com",
+    "password": "$2b$10$sHUQ74NZYf9gXelM.ZFN4epoc4VvLgMm/xQ/GLHrG7BvrsrYBoKcW",
+    "pregunta": "nombre de mascota",
+    "respuestarc": "$2b$10$sHUQ74NZYf9gXelM.ZFN4ezAVOiZ7KXFwbq3YEUDMst9gGET6Bvq.",
+    "fechaRegistro": "2026-03-31T04:50:55.392Z"
+  },
+  {
+    "nombre": "abigail",
+    "Telefono": "521234567890",
+    "correo": "abigail_yuvia@gmail.com",
+    "password": "$2b$10$77vpi1XvxQUfzmT.Mjv4EOhtiHgvE1D9C9gamhs9fiR3pgipMpVEe",
+    "respuestarc": "$2b$10$szyzRQDvSQZhUWuq7w/yE.K6GIXu1Xb18eL8TOWHl907yycGGsUxe",
+    "fechaRegistro": "2026-03-31T18:36:00.726Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "haoaoak@gmail.com",
+    "password": "$2b$10$vhfL52mCvyj651einnFcl.tmqTNXecCl.t6vT8r6/YkHeexqMrwHq",
+    "respuestarc": "$2b$10$vhfL52mCvyj651einnFcl.8evSKiBG5ovg26IVsSL77Pa1YifyA/i",
+    "fechaRegistro": "2026-03-31T20:09:17.378Z"
+  },
+  {
+    "nombre": "anita ",
+    "Telefono": "521234567890",
+    "correo": "anita@gmail.com",
+    "password": "$2b$10$Y1nokxlpdczNhMLWIT0Hw.TOMUStQl8R08rbEqli1RmqmEj60WcVG",
+    "respuestarc": "$2b$10$MzbgFXjw03ZUVJ5Rk3wZDuftMqiFFURFpt7gYrFPL8rKKgd8Jtade",
+    "fechaRegistro": "2026-03-31T22:05:45.556Z"
+  },
+  {
+    "nombre": "yuvia",
+    "Telefono": "521234567890",
+    "correo": "yuviaaaaa@gmail.com",
+    "password": "$2b$10$0f4DLkn3do1Rl2fmxA4gwe1KwGKIiMqKjy.l5.hHLfQ/vM251YHNa",
+    "respuestarc": "$2b$10$0f4DLkn3do1Rl2fmxA4gweB7ix2zjMw8aK9FoNiXOP1o/0D/NrHHS",
+    "fechaRegistro": "2026-03-31T23:32:06.160Z"
   }
 ]

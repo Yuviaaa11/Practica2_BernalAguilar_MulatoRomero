@@ -1,147 +1,181 @@
-/**
- * VALIDACIÓN DE FORMULARIOS UNIFICADA
- */
-
-const forms = document.querySelectorAll("form"); // Selecciona todos los formularios
+const form = document.getElementById("miFormulario");
+// Nota: 'resultado' y 'mensajeExito' se usan en el Registro
 const resultado = document.getElementById("resultado");
 const mensajeExito = document.getElementById("mensajeExito");
 
-// Mapeo unificado de errores
-const erroresMap = {
-    nombre: "errorNombre",
-    Telefono: "errorTelefono",
-    correo: "errorCorreo",
-    contrasena: "errorContrasena",
-    password: "error-password", // Del segundo formulario
-    contrasenaConfirmacion: "errorContrasenaConfirmacion",
-    preguntaRecuperacion: "errorPreguntaRecuperacion",
-    respuestaRecuperacion: "errorRespuestaRecuperacion"
-};
+// Lista de campos para validación (se adaptan según el formulario)
+const camposRegistro = ["nombre", "Telefono", "correo", "contrasena", "contrasenaConfirmacion", "pregunta", "respuestaRecuperacion"];
+const camposLogin = ["correo", "password"];
 
+// --- FUNCIÓN DE VALIDACIÓN VISUAL (La que pone todo en rojo) ---
 function validarCampo(id) {
     const input = document.getElementById(id);
-    // Intenta buscar el error por el mapa o por el ID dinámico "error-id"
-    const errorId = erroresMap[id] || `error-${id}`;
-    const error = document.getElementById(errorId);
+    if (!input) return true;
 
-    if (!input || !error) return true;
+    // Buscamos el span de error. 
+    // Si el id es 'password', busca 'errorPassword'. Si es 'correo', busca 'errorCorreo'.
+    const errorId = "error" + id.charAt(0).toUpperCase() + id.slice(1);
+    const errorSpan = document.getElementById(errorId);
 
-    error.textContent = "";
-    input.classList.remove("valido", "invalido");
+    // Limpiamos estilos y textos previos (Esto quita las comas/puntos)
+    input.classList.remove("invalido", "valido");
+    if (errorSpan) errorSpan.textContent = "";
+
     const valor = input.value.trim();
 
-    // 1. Validación de campo obligatorio
-    if (input.required && (valor === "" || input.validity.valueMissing)) {
-        error.textContent = "Este campo es obligatorio";
+    // 1. Validar si está vacío
+    if (valor === "") {
         input.classList.add("invalido");
+        if (errorSpan) errorSpan.textContent = "Este campo es obligatorio";
         return false;
     }
 
-    // 2. Validaciones específicas por ID
-    if (id === "nombre") {
-        if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,50}$/.test(valor)) {
-            error.textContent = "El nombre debe tener letras y mínimo 3 caracteres";
-            input.classList.add("invalido");
-            return false;
-        }
-    }
-
-    if (id === "Telefono") {
-        if (!/^52\d{10}$/.test(valor)) {
-            error.textContent = "Debe iniciar con 52 y tener 10 dígitos";
-            input.classList.add("invalido");
-            return false;
-        }
-    }
-
+    // 2. Validaciones específicas por tipo
     if (id === "correo") {
-        if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(valor)) {
-            error.textContent = "Correo electrónico inválido";
+        const regexCorreo = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        if (!regexCorreo.test(valor)) {
             input.classList.add("invalido");
+            if (errorSpan) errorSpan.textContent = "Correo electrónico inválido";
             return false;
         }
     }
 
-    if ((id === "contrasena" || id === "password") && valor.length < 8) {
-        error.textContent = "La contraseña debe tener al menos 8 caracteres";
+    if (id === "Telefono" && !/^52\d{10}$/.test(valor)) {
         input.classList.add("invalido");
+        if (errorSpan) errorSpan.textContent = "Debe iniciar con 52 y tener 10 dígitos";
+        return false;
+    }
+
+    if (id === "contrasena" && valor.length < 8) {
+        input.classList.add("invalido");
+        if (errorSpan) errorSpan.textContent = "Mínimo 8 caracteres";
         return false;
     }
 
     if (id === "contrasenaConfirmacion") {
-        const original = document.getElementById("contrasena");
-        if (valor !== original.value.trim()) {
-            error.textContent = "Las contraseñas no coinciden";
+        const passOriginal = document.getElementById("contrasena").value;
+        if (valor !== passOriginal) {
             input.classList.add("invalido");
+            if (errorSpan) errorSpan.textContent = "Las contraseñas no coinciden";
             return false;
         }
     }
 
+    // Si todo está bien
     input.classList.add("valido");
     return true;
 }
 
-// Escuchar eventos en todos los formularios de la página
-forms.forEach(form => {
-    // Agregar validación en tiempo real a los inputs de este formulario
-    const inputs = form.querySelectorAll("input, select");
-    inputs.forEach(input => {
-        if (input.id) {
-            input.addEventListener("blur", () => validarCampo(input.id));
-            input.addEventListener("input", () => validarCampo(input.id));
-        }
-    });
+// --- EVENTOS PARA VALIDAR MIENTRAS ESCRIBES ---
+document.querySelectorAll("input, select").forEach(elemento => {
+    elemento.addEventListener("blur", () => validarCampo(elemento.id));
+    elemento.addEventListener("input", () => validarCampo(elemento.id));
+});
 
-    // Manejo del Submit
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        let esValido = true;
+// --- FUNCIONES PARA TARJETAS DE REGISTRO ---
+function mostrarTarjetaExito() {
+    form.style.display = "none";
+    document.getElementById("tarjetaExito").style.display = "flex";
+}
 
-        // Validar solo los campos que pertenecen a este formulario
-        const camposDelForm = form.querySelectorAll("input");
-        camposDelForm.forEach(input => {
-            if (input.id && !validarCampo(input.id)) {
-                esValido = false;
-            }
-        });
+function mostrarTarjetaError() {
+    document.getElementById("tarjetaError").style.display = "flex";
+}
 
-        if (!esValido) return;
+// Global para que el botón cerrar funcione
+window.cerrarTarjetaError = function() {
+    document.getElementById("tarjetaError").style.display = "none";
+    const correoInput = document.getElementById("correo");
+    if (correoInput) {
+        correoInput.value = "";
+        correoInput.classList.remove("valido");
+        correoInput.focus();
+    }
+};
 
-        const datos = Object.fromEntries(new FormData(form));
-        
-        // Determinar a qué endpoint enviar (si es login/recuperar o registro)
-        const endpoint = form.id === "formRecuperar" ? "/recuperar" : (form.id === "formRegistro" ? "/registro" : "/");
+// --- EL EVENTO SUBMIT (EL CEREBRO) ---
+form.addEventListener("submit", async function (e) {
+    e.preventDefault(); 
+
+    // Detectar si es Registro, Login (Kirby) o Recuperación
+    const esRegistro = document.getElementById("nombre") !== null;
+    const esRecuperacion = document.getElementById("nuevaPassword") !== null;
+
+    // --- CASO 1: LOGIN (KIRBY / InForm.html) ---
+    if (!esRegistro && !esRecuperacion) {
+        const v1 = validarCampo("correo");
+        const v2 = validarCampo("password");
+
+        if (!v1 || !v2) return; // Si hay rojo, no avanza
+
+        const datos = {
+            correo: document.getElementById("correo").value.trim(),
+            password: document.getElementById("password").value.trim()
+        };
 
         try {
-            const response = await fetch(endpoint, {
+            const response = await fetch("/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(datos)
             });
+            const res = await response.json();
 
-            const serverRes = await response.json();
-
-            if (serverRes.ok) {
-                // Caso de éxito
-                if (mensajeExito) mensajeExito.textContent = "¡Operación exitosa!";
-                
-                if (endpoint === "/registro") {
-                    document.body.innerHTML = `<h1>${serverRes.mensaje || '¡Bienvenido!'}</h1>`;
-                } else {
-                    resultado.textContent = serverRes.detalles || serverRes.mensaje;
-                    resultado.style.color = "#27ae60";
-                }
+            if (response.ok) {
+                window.location.href = "/inicio"; // Te lleva con Mitsuri
             } else {
-                // Caso de error del servidor
-                alert(serverRes.mensaje);
-                if (resultado) {
-                    resultado.textContent = serverRes.mensaje;
-                    resultado.style.color = "#e74c3c";
+                alert(res.mensaje);
+            }
+        } catch (err) { alert("Error de conexión"); }
+        return;
+    }
+
+    // --- CASO 2: REGISTRO (FormularioCrear.html) ---
+    if (esRegistro) {
+        let valido = true;
+        camposRegistro.forEach(id => {
+            if (!validarCampo(id)) valido = false;
+        });
+
+        if (!valido) return;
+
+        const datosRegistro = Object.fromEntries(new FormData(form));
+
+        try {
+            const response = await fetch("/registro", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datosRegistro)
+            });
+            const res = await response.json();
+
+            if (response.ok) {
+                mostrarTarjetaExito();
+            } else {
+                // Si el correo ya existe, muestra la tarjeta de error de Yuvia
+                if (res.mensaje.includes("ya está registrado")) {
+                    mostrarTarjetaError();
+                } else {
+                    alert(res.mensaje);
                 }
             }
-        } catch (error) {
-            console.error("Error en la petición:", error);
-            if (resultado) resultado.textContent = "Error de conexión con el servidor";
-        }
-    });
+        } catch (err) { alert("Error al registrar"); }
+        return;
+    }
+
+    // --- CASO 3: RECUPERACIÓN (Conform.html) ---
+    if (esRecuperacion) {
+        // Aquí puedes agregar validaciones similares para recuperación si lo deseas
+        const datosRec = Object.fromEntries(new FormData(form));
+        try {
+            const response = await fetch("/recuperar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datosRec)
+            });
+            const res = await response.json();
+            alert(res.mensaje);
+            if (response.ok) window.location.href = "/";
+        } catch (err) { alert("Error en la recuperación"); }
+    }
 });

@@ -24,11 +24,60 @@
 
 */
 
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
+//import express from "express";
+//import path from "path";
+//import { fileURLToPath } from "url";
 
 /*import dotenv from "dotenv"; // npm install dotenv*/
+
+//--------------ACTUALIZACION ----------------
+import express from 'express';
+
+import https from 'https';
+
+import fs from 'fs';
+
+import path from 'path';
+
+ 
+
+const app = express();
+
+ 
+
+// 1. Cargar los certificados
+
+// Nota: En producción, usa variables de entorno para las rutas
+
+const options = {
+
+  key: fs.readFileSync('./localhost-key.pem'),
+
+  cert: fs.readFileSync('./localhost.pem'),
+
+};
+
+ 
+
+app.get('/', (req, res) => {
+
+  res.send('¡Conexión segura establecida!');
+
+});
+
+ 
+
+// 2. Crear el servidor HTTPS pasando la app de Express
+
+const PORT = 443; // Puerto estándar para HTTPS
+
+https.createServer(options, app).listen(PORT, () => {
+
+  console.log(`Servidor HTTPS corriendo en https://localhost:${PORT}`);
+
+});
+
+//----------- ACTUALIZACION ------------------
 
 import formRoutes from "./routes/formRoutes.js";
 //ntsat -reecupra los puertos
@@ -54,6 +103,12 @@ app.use(express.urlencoded({ extended: true })); //revisar
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+//Define el motor de plantillas
+app.set('view engine', 'ejs');
+
+//asocia carpeta views para las vistas EJS --aqui ponemos la direcciond de la carpeta
+app.set('views', path.join(__dirname, 'views'));
+
 // asocia contenido estático HTML, CSS
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -64,3 +119,4 @@ app.use("/", formRoutes);
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
+

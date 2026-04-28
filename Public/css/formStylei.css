@@ -66,7 +66,7 @@ form{
     padding:25px 30px;
     border-radius:10px;
     width:100%;
-    max-width:400px;
+    max-width:500px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
     display:flex;
     flex-direction:column;
@@ -148,15 +148,25 @@ button{
 
 .olvido {
     color: #0866ff;
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 18px;
     align-self: center;
 }
 
 .olvido:hover {
     text-decoration: underline;
+    transform: translateY(-2px);
 }
 
+.CrearCuenta{
+    background:#97AE0A;
+    color:white;
+}
+
+.CrearCuenta:hover{
+    background:#B2CD0D;
+    transform: translateY(-2px);
+}
 
 /* BOTON SECUNDARIO ) */
 .secondary{
@@ -196,3 +206,119 @@ button{
         padding: 25px;
     }
 }
+
+.contenedorModo {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    
+}
+
+/* MODO OSCURO */
+
+.btnModoOscuro {
+    flex: none;
+    padding: 3px 16px;
+    background: #B2CD0D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btnModoOscuro:hover{
+     background: #97AE0A !important;
+     transform: translateY(-2px);
+}
+
+body.oscuro {
+    background: #1a1a2e !important;
+    color: #ffffff !important;
+}
+
+body.oscuro form {
+    background: #16213e !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4) !important;
+}
+
+body.oscuro input {
+    background: #0f3460 !important;
+    border-color: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro input::placeholder {
+    color: #aaa !important;
+}
+
+body.oscuro label {
+    color: #ffffff !important;
+}
+
+body.oscuro h2 {
+    color: #ffffff !important;
+}
+
+body.oscuro .tarjeta {
+    background: #16213e !important;
+    color: #ffffff !important;
+}
+
+body.oscuro .tarjeta p {
+    color: #ffffff !important;
+}
+
+body.oscuro .login-container{
+    background: #42558a !important;
+    color: #ffffff !important;
+}
+
+body.oscuro .btnModoOscuro {
+    background: #444 !important;
+    color: #e0e0e0 !important;
+}
+
+body.oscuro .btnModoOscuro:hover{
+     background: #4a90e2 !important;
+    transform: translateY(-2px);
+}
+
+body.oscuro .submit {
+    background: #265889 !important; 
+    color: white !important;
+}
+
+body.oscuro .submit:hover {
+     background: #4a90e2 !important;
+     transform: translateY(-2px);
+}
+
+body.oscuro .CrearCuenta{
+    background: #4a90e2 ;
+    color:white;
+}
+
+body.oscuro .CrearCuenta:hover{
+    background: #357abd;
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+body.oscuro .olvido { 
+    color: white !important;
+}
+
+body.oscuro .olvido:hover {
+    background: #357abd !important;
+    transform: translateY(-2px);
+}
+
+body.oscuro #resultado{
+    background:#16213e !important;
+}
+
+
+
+
+

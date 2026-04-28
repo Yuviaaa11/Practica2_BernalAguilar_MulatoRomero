@@ -1,12 +1,3 @@
-/**
- * Aquí se define la estructura de los datos,
- * en su caso mapeo de datos a una base de datos.
- * 
- * Para el caso del formulario.
- *  1. Registrar usuario
- *  2. Recuperar usuario
- *  3. Modificar contraseña
- */
 
 /**
  * Aquí se define la estructura de los datos,
@@ -18,59 +9,44 @@
  *  3. Modificar contraseña
  */
 
+import sql from 'mssql';
+import { getConnection } from '../../APIREST/src/config/sqlserver.js';
 
-/**
- * Aquí se define la estructura de los datos,
- * en su caso mapeo de datos a una base de datos.
- * 
- * Para el caso del formulario.
- *  1. Registrar usuario
- *  2. Recuperar usuario
- *  3. Modificar contraseña
- */
-
-import { readFile, writeFile } from 'fs/promises';
-import path from "path";
-import { fileURLToPath } from "url";
- 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
- 
-const FILE_PATH = path.join(__dirname, "../data/", "usuarios.json")
- 
 export const readUsers = async () => {
-  try {
-    const data = await readFile(FILE_PATH, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
+    const pool = await getConnection();
+    const result = await pool.request().query('SELECT * FROM Users');
+    return result.recordset;
 };
- 
+
 export const writeUser = async (newUser) => {
-  try {
-    // Leer usuarios actuales
-    const data = await readFile(FILE_PATH, 'utf-8');
-    const users = JSON.parse(data);
- 
-    // Agregar nuevo usuario
-    users.push(newUser);
- 
-    // Guardar archivo actualizado
-    await writeFile(FILE_PATH, JSON.stringify(users, null, 2));
-    return users;
-  } catch (error) {
-    console.error('Error registrando usuario:', error);
-    return null;
-  }
+    const { nombre, Telefono, correo, password, preguntaId, respuestarc } = newUser;
+    const pool = await getConnection();
+    await pool.request()
+        .input('nombre',      sql.NVarChar, nombre)
+        .input('Telefono',    sql.NVarChar, Telefono)
+        .input('correo',      sql.NVarChar, correo)
+        .input('password',    sql.NVarChar, password)
+        .input('preguntaId',  sql.Int,      preguntaId)
+        .input('respuestarc', sql.NVarChar, respuestarc)
+        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntaId, respuestarc)
+                VALUES (@nombre, @Telefono, @correo, @password, @preguntaId, @respuestarc)`);
 };
- 
-export const findUserByEmail = async (email) => {
-  const users = await readUsers();
-  return users.find(
-    ({ email: c }) => c.toLowerCase() === email.toLowerCase()
-  ) || null;
+
+export const findUserByEmail = async (correo) => {
+    const pool = await getConnection();
+    const result = await pool.request()
+        .input('correo', sql.NVarChar, correo)
+        .query('SELECT * FROM Users WHERE correo = @correo');
+    return result.recordset[0] || null;
 };
- 
-export const existsUser = async (email) =>
-  !!(await findUserByEmail(email));
+
+export const existsUser = async (correo) =>
+    !!(await findUserByEmail(correo));
+
+export const updatePassword = async (correo, nuevaPassword) => {
+    const pool = await getConnection();
+    await pool.request()
+        .input('correo',   sql.NVarChar, correo)
+        .input('password', sql.NVarChar, nuevaPassword)
+        .query('UPDATE Users SET password = @password WHERE correo = @correo');
+};
