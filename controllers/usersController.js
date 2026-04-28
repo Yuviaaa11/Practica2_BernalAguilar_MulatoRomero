@@ -61,34 +61,27 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { correo, contrasena } = req.body;
   try {
-    /*const result = await validateUser(correo, contrasena);
+    // 1. Validación de BD 
+    // Supongamos que 'resultado' trae los datos del usuario de la BD
+    const resultado = await validateUser(correo, contrasena); 
 
-    console.log(result);
-    // Si el servicio indica error
-    if (!result.success) {
-      return res.status(400).json({
-        success: false,
-        errors: result.errors
+    if (resultado.success) {
+      // 2. GUARDAR EN SESIÓN
+      req.session.usuarioLogueado = true;
+      req.session.nombreUsuario = resultado.data.nombre; // Nombre que viene de la BD
+
+      // 3. RENDERIZAR VISTA EJS
+      // Pasamos el nombre guardado en la sesión a la vista
+      return res.render('pages/bienvenida', { 
+        nombre: req.session.nombreUsuario 
       });
+    } else {
+      return res.status(400).json({ success: false, errors: resultado.errors });
     }
-*/
-    // Login correcto
-   /* return res.status(200).json({
-      success: true,
-      errors: null,
-      data: result.data
-    });*/
 
-    console.log('antes del render ...')
-
-    // Renderizar la vista
-    res.render('pages/bienvenida',{ nombre:'Juan' })
   } catch (error) {
     console.error('Error en loginUser:', error.message);
-    return res.status(500).json({
-      success: false,
-      errors: { general: 'Error interno del servidor' }
-    });
+    return res.status(500).json({ success: false, errors: { general: 'Error interno' } });
   }
 };
 

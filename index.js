@@ -32,18 +32,12 @@
 
 //--------------ACTUALIZACION ----------------
 import express from 'express';
-
 import https from 'https';
-
 import fs from 'fs';
-
 import path from 'path';
-
- 
+import session from 'express-session';
 
 const app = express();
-
- 
 
 // 1. Cargar los certificados
 
@@ -109,13 +103,23 @@ app.set('view engine', 'ejs');
 //asocia carpeta views para las vistas EJS --aqui ponemos la direcciond de la carpeta
 app.set('views', path.join(__dirname, 'views'));
 
-// asocia contenido estático HTML, CSS
+app.use(session({
+    secret: 'awademolepasilloamarillo', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Poner en true solo si se usa HTTPS (SSL)
+}));
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Archivos estáticos
 app.use("/", express.static(path.join(__dirname, "public")));
 
 // Rutas
 app.use("/", formRoutes);
 
-// Se asocia el puerto e inicia el servidor
 app.listen(PORT, () => {
     console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });

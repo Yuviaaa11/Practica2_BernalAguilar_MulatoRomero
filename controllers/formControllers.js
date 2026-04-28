@@ -93,4 +93,10 @@ export const recuperarPassword = async (req, res) => {
         });
     }
 };
-
+ export const showWelcome = (req, res) => {
+    if (req.session.usuarioLogueado) {
+        res.render('pages/bienvenida', { nombre: req.session.nombreUsuario });
+    } else {
+        res.redirect('/login'); // Si no hay sesión, lo mandas al login
+    }
+};
