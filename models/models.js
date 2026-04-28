@@ -10,7 +10,8 @@
  */
 
 import sql from 'mssql';
-import { poolPromise } from '../../APIREST/src/config/sqlserver.js';
+// Los tres ../ significan: 1. Sal de models, 2. Sal de Ejemplo_WebApp, 3. Entra a APIREST
+import {getConnection } from '../../../APIREST/src/config/sqlserver.js';
 
 export const readUsers = async () => {
     const pool = await getConnection();
