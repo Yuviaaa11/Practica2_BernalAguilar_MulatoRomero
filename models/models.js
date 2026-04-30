@@ -10,7 +10,6 @@
  */
 
 import sql from 'mssql';
-// Los tres ../ significan: 1. Sal de models, 2. Sal de Ejemplo_WebApp, 3. Entra a APIREST
 import {getConnection } from '../../../APIREST/src/config/sqlserver.js';
 
 export const readUsers = async () => {
@@ -27,10 +26,10 @@ export const writeUser = async (newUser) => {
         .input('Telefono',    sql.NVarChar, Telefono)
         .input('correo',      sql.NVarChar, correo)
         .input('password',    sql.NVarChar, password)
-        .input('preguntarc',  sql.Int,      preguntarc)
+        .input('preguntaId',  sql.Int,      preguntaId)
         .input('respuestarc', sql.NVarChar, respuestarc)
-        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntarc, respuestarc)
-                VALUES (@nombre, @Telefono, @correo, @password, @preguntarc, @respuestarc)`);
+        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntaId, respuestarc)
+                VALUES (@nombre, @Telefono, @correo, @password, @preguntaId, @respuestarc)`);
 };
 
 export const findUserByEmail = async (correo) => {
