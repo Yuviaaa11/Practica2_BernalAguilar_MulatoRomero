@@ -15,10 +15,10 @@ export const writeUser = async (newUser) => {
         .input('Telefono',    sql.NVarChar, Telefono)
         .input('correo',      sql.NVarChar, correo)
         .input('password',    sql.NVarChar, password)
-        .input('preguntarc',  sql.Int,      preguntarc)
+        .input('preguntarc',  sql.NVarChar, preguntarc) // ← NVarChar no Int
         .input('respuestarc', sql.NVarChar, respuestarc)
-        .query(`INSERT INTO usuarios (nombre, Telefono, correo, password, preguntarc, respuestarc)
-                VALUES (@nombre, @Telefono, @correo, @password, @preguntarc, @respuestarc)`);
+        .query(`INSERT INTO users (nombre, Telefono, correo, password, preguntarc, respuestarc)
+                VALUES (@nombre, @Telefono, @correo, @password, @preguntarc, @respuestarc)`); // ← users no usuarios
 };
 
 export const findUserByEmail = async (correo) => {

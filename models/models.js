@@ -9,8 +9,8 @@
  *  3. Modificar contraseña
  */
 
-import sql from 'mssql';
-import {getConnection } from '../../../APIREST/src/config/sqlserver.js';
+import sql from '../../APIREST/node_modules/mssql/index.js';
+import { getConnection } from '../../APIREST/src/config/sqlserver.js';
 
 export const readUsers = async () => {
     const pool = await getConnection();
@@ -19,17 +19,17 @@ export const readUsers = async () => {
 };
 
 export const writeUser = async (newUser) => {
-    const { nombre, Telefono, correo, password, preguntaId, respuestarc } = newUser;
+    const { nombre, Telefono, correo, password, preguntarc, respuestarc } = newUser;
     const pool = await getConnection();
     await pool.request()
         .input('nombre',      sql.NVarChar, nombre)
         .input('Telefono',    sql.NVarChar, Telefono)
         .input('correo',      sql.NVarChar, correo)
         .input('password',    sql.NVarChar, password)
-        .input('preguntaId',  sql.Int,      preguntaId)
+        .input('preguntarc',  sql.NVarChar, preguntarc)
         .input('respuestarc', sql.NVarChar, respuestarc)
-        .query(`INSERT INTO Users (nombre, Telefono, correo, password, preguntaId, respuestarc)
-                VALUES (@nombre, @Telefono, @correo, @password, @preguntaId, @respuestarc)`);
+        .query(`INSERT INTO users (nombre, Telefono, correo, password, preguntarc, respuestarc)
+                VALUES (@nombre, @Telefono, @correo, @password, @preguntarc, @respuestarc)`);
 };
 
 export const findUserByEmail = async (correo) => {

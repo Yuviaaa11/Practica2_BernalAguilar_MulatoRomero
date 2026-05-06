@@ -8,6 +8,7 @@ import {
 
 // --- REGISTRO ---
 export const registrarUsuarioService = async (datos) => {
+    console.log('datos registro:', datos);
     const { nombre, Telefono, correo, contrasena, respuestarc, preguntarc } = datos;
 
     if (await existsUser(correo)) {
@@ -32,12 +33,16 @@ export const registrarUsuarioService = async (datos) => {
 
 // --- LOGIN ---
 export const procesarLogin = async (datos) => {
+    console.log('datos login:', datos);
     const { correo, password } = datos;
 
     const usuario = await findUserByEmail(correo);
+    console.log('usuario encontrado:', usuario); 
     if (!usuario) throw new Error("El usuario no existe");
 
     const esValida = await bcrypt.compare(password, usuario.password);
+    console.log('password ingresada:', password); 
+console.log('password en BD:', usuario.password); 
     if (!esValida) throw new Error("Contraseña incorrecta");
 
     return { nombre: usuario.nombre, correo: usuario.correo };

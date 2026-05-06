@@ -59,6 +59,7 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
+  console.log('loginUser ejecutado', req.body); // 
   const { correo, contrasena } = req.body;
   try {
     // 1. Validación de BD 

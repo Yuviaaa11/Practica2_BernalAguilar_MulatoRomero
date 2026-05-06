@@ -11,7 +11,7 @@
 /*SPA -- Single Page Application */
 
 import express from "express";
-import { showFormRegister,showRecovery, showWelcome, registerUser, loginUserz } from "../controllers/usersController.js";
+import { showFormRegister,showRecovery, showWelcome, registerUser, loginUser } from "../controllers/usersController.js";
 
 const router = express.Router();
 /*router.get("/", showFormLogin);*/
