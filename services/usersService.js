@@ -62,7 +62,7 @@ export const processForm = async (datos) => {
         const saltRounds = 12;
         const contrasenaHash = await bcrypt.hash(contrasena, saltRounds);
         const respuestarcHash = await bcrypt.hash(respuestarc, saltRounds);
-
+console.log(contrasenaHash)
         const datosProcesados = {
             nombre,
             password: contrasenaHash,
@@ -70,7 +70,8 @@ export const processForm = async (datos) => {
             respuestarc: respuestarcHash,
             correo,
         };
-
+console.log (datosProcesados)
+console.log(contrasenaHash)
         // Se guarda en la base de datos
         await writeUser(datosProcesados);
 
